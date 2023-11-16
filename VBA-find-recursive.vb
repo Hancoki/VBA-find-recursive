@@ -10,7 +10,7 @@ Public Function Find(TypeToFind As String, FindStr As Variant, Optional StartRow
     
     If Not IsMissing(Target) Then Worksheets(Target).Activate ' use target sheet if it is needed
     
-    With Range(Cells(StartRow, StartColumn), Cells(CountRowsNew, CountColumnsNew)) ' find string in your defined range
+    With Range(Cells(StartRow, StartColumn), Cells(CountRows, CountColumns)) ' find string in your defined range
     
         Set CellResult = .Find(What:=FindStr, After:=Cells(StartRow, StartColumn), LookIn:=xlFormulas, LookAt:=xlWhole, SearchOrder:=xlByRows)
     
@@ -25,5 +25,17 @@ Public Function Find(TypeToFind As String, FindStr As Variant, Optional StartRow
     End If
     
     Worksheets(Source).Activate ' activate the source sheet after function call
+
+End Function
+
+Public Function CountRows() As Integer
+
+    CountRows = ActiveSheet.UsedRange.Rows.Count ' Count used rows in active worksheet
+
+End Function
+
+Public Function CountColumns() As Integer
+
+    CountColumns = ActiveSheet.UsedRange.Columns.Count ' Count used columns in active worksheet
 
 End Function
